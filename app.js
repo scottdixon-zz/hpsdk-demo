@@ -43,6 +43,8 @@ app.post('/pay', verifySignature, (req, res) => {
 
   res.redirect(redirect)
 
+  // POST a callback asynchronously to x_url_callback with the same Response Values
+  // https://help.shopify.com/en/api/guides/payment-gateway/hosted-payment-sdk/checkout-process
   request({
     headers: {
       'Content-Length': response.length,
@@ -63,6 +65,8 @@ app.post('/capture', verifySignature, (req, res) => {
 
   const response = querystring.stringify(generateResponse(body, 'capture'))
 
+  // POST a callback asynchronously to x_url_callback with the same Response Values
+  // https://help.shopify.com/en/api/guides/payment-gateway/hosted-payment-sdk/checkout-process
   request({
     headers: {
       'Content-Length': response.length,
